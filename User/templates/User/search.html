@@ -1,0 +1,36 @@
+{% extends 'User/base.html' %}
+{% load mytemplate %}
+{% block content %}
+
+<table class="table table-responsive">
+{% for file in s_trash %}
+  <tr> 
+    <td>
+    {% if file|is_type:"image" %}
+    <img src="{{file.doc_file.url}}" width="50" height="50"/>
+    {% elif file|is_type:"video" %}
+    <video src="{{file.doc_file.url}}" width="50" height="50" autoply muted loop/>
+    {% elif file|is_type:"pdf" %}
+    <i class="far fa-file-pdf" style="font-size: 3rem;"></i>
+    {% elif file|is_type:"compressed" %}
+    <i class="far fa-file-archive" style="font-size: 3rem;"></i>
+    {% else %}
+    <i class="far fa-file" style="font-size: 3rem;"></i>
+    {% endif %}    
+    </td>
+    <td>{{file.doc_file.name|name}} </td>
+    <td>{{file.doc_size|size}}</td>
+    <td>
+        <a href="{{file.doc_file.url}}" download="{{file.doc_file.url}}" style="tex-decoration:None" class="footer_link">
+        <button class="btn btn-primary">Download<i class="fa fa-download"></i></button>
+        </a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr> 
+    <td><h3>No Match found!</h3></td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}

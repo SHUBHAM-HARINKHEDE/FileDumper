@@ -1,0 +1,38 @@
+
+.not-visible{
+    display: none;
+}
+#myform{
+    padding-top: 20px;
+    padding-bottom: 2px;
+    outline: 2px dashed #ccc;
+    text-align:center;
+    background-color: whitesmoke;
+    outline-offset: -10px;
+    
+}
+.dropzone{
+    
+    height:300px;
+    outline: 2px dashed #ccc;
+    color:#ccc;
+    line-height:200px;
+    text-align:center;
+    background-color: whitesmoke;
+    outline-offset: -10px;
+ 
+  }
+ .dropzone.dragover{
+     outline-color: black;
+     background-color: silver;
+     color:#000;
+     animation: disco 5s infinite;
+  }
+  
+  @keyframes disco {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+  }

@@ -1,0 +1,141 @@
+{% extends 'User/base.html' %}
+{% load mytemplate %}
+{% block title %}FileDumper{% endblock title %}
+{% block content %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="true">Image</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="video-tab" data-toggle="tab" href="#video" role="tab" aria-controls="video" aria-selected="false">Video</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pdf-tab" data-toggle="tab" href="#pdf" role="tab" aria-controls="pdf" aria-selected="false">PDF</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="compressed-tab" data-toggle="tab" href="#compressed" role="tab" aria-controls="compressed" aria-selected="false">compressed</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab" aria-controls="other" aria-selected="false">Other</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
+  <br>
+  <table class="table table-responsive">
+  {% for file in i_trash %}
+  <tr> 
+    <td> <img src="{{file.doc_file.url}}" width="100" height="100"/> </td>
+    <td>{{file.doc_file.name|name}} </td>
+    <td>{{file.doc_size|size}}</td>
+    <td>
+        <a href="{{file.doc_file.url}}" download="{{file.doc_file.url}}" style="tex-decoration:None" class="footer_link">
+        <button class="btn btn-primary">Download<i class="fa fa-download"></i></button>
+        </a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr> 
+    <td><h3>No Images in Junckyard!</h3></td>
+  </tr>
+  {% endfor %}
+</table>  
+  </div>
+  <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
+  <br>
+    <table class="table table-responsive">
+  {% for file in v_trash %}
+  <tr> 
+    <td> <video src="{{file.doc_file.url}}" width="100" height="100" autoply muted loop/> </td>
+    <td>{{file.doc_file.name|name}} </td>
+    <td>{{file.doc_size|size}}</td>
+    <td>
+        <a href="{{file.doc_file.url}}" download="{{file.doc_file.url}}" style="tex-decoration:None" class="footer_link">
+        <button class="btn btn-primary">Download<i class="fa fa-download"></i></button>
+        </a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr> 
+    <td><h3>No Videos in Junckyard!</h3></td>
+  </tr>
+  {% endfor %}
+</table>
+  </div>
+  <div class="tab-pane fade" id="pdf" role="tabpanel" aria-labelledby="pdf-tab">
+  <br>
+  <table class="table table-responsive">
+  {% for file in p_trash %}
+  <tr> 
+    <td><i class="far fa-file-pdf" style="font-size: 2rem;"></i></td>
+    <td>{{file.doc_file.name|name}} </td>
+    <td>{{file.doc_size|size}}</td>
+    <td>
+        <a href="{{file.doc_file.url}}" download="{{file.doc_file.url}}" style="tex-decoration:None" class="footer_link">
+        <button class="btn btn-primary">Download<i class="fa fa-download"></i></button>
+        </a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr> 
+    <td><h3>No PDFs in Junckyard!</h3></td>
+  </tr>
+  {% endfor %}
+</table>
+  </div>
+  <div class="tab-pane fade" id="compressed" role="tabpanel" aria-labelledby="compressed-tab">
+  <br>
+    <table class="table table-responsive">
+  {% for file in c_trash %}
+  <tr> 
+    <td><i class="far fa-file-archive" style="font-size: 2rem;"></i></td>
+    <td>{{file.doc_file.name|name}} </td>
+    <td>{{file.doc_size|size}}</td>
+    <td>
+        <a href="{{file.doc_file.url}}" download="{{file.doc_file.url}}" style="tex-decoration:None" class="footer_link">
+        <button class="btn btn-primary">Download<i class="fa fa-download"></i></button>
+        </a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr> 
+    <td><h3>No compressed files in Junckyard!</h3></td>
+  </tr>
+  {% endfor %}
+</table>
+  </div>
+  <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
+  <br>
+    <table class="table table-responsive">
+  {% for file in o_trash %}
+  <tr> 
+    <td><i class="far fa-file" style="font-size: 2rem;"></i></td>
+    <td>{{file.doc_file.name|name}} </td>
+    <td>{{file.doc_size|size}}</td>
+    <td>
+        <a href="{{file.doc_file.url}}" download="{{file.doc_file.url}}" style="tex-decoration:None" class="footer_link">
+        <button class="btn btn-primary">Download<i class="fa fa-download"></i></button>
+        </a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr> 
+    <td><h3>No unknown junc in Junckyard!</h3></td>
+  </tr>
+  {% endfor %}
+</table>
+  </div>
+</div>
+
+<script>
+
+$(document).ready(function(){
+
+  if(window.location.hash != "") {
+    $('a[href="' + window.location.hash + '"]').click()
+  }
+
+});
+</script>
+
+{% endblock content %}

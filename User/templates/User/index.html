@@ -1,0 +1,29 @@
+{% extends 'User/base.html' %}
+{% block title %}FileDumper{% endblock title %}
+{% block content %}
+<div id="alert-box">
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{message.tags}}"> 
+            {{message}}
+        </div>
+    {% endfor %}
+  {% endif %}
+</div>
+<div class="dropzone well" id="dropzone">
+  <i class='fas fa-arrow-down' style="font-size: 4rem;"></i>
+  <h3>Drop file Here to Upload</h3>
+</div>
+<form id="myform" method="POST" action="" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.as_p}} 
+</form>
+<div id="progress-box" class="not-visible">Progress</div>
+<div id="cancel-box" class="not-visible">
+  <button id="cancel" class="btn btn-danger">cancel</button>
+</div>  
+<br>
+<div id="image-box" class="not-visible"></div>
+{% endblock content %}
+
+  
