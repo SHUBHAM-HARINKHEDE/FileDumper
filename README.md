@@ -1,6 +1,6 @@
 # FileDumper
 
-### This is a Django web application for uploading and downloading files.
+### Django web application for uploading and downloading files.
 
 ## Features
 1. Drag and Drop upload
